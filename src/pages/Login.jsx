@@ -19,9 +19,21 @@ const Login = () => {
   };
 
   return (
-    <div className="d-flex justify-content-end align-items-center" style={{ minHeight: "100vh", paddingRight: "325px" }}>
-      <div className="card shadow-lg p-4" style={{ width: "360px", border: "1px solid #4CB917", borderRadius: "15px" }}>
-        <p className="text-muted mb-1" style={{ fontSize: "14px" }}>Seja bem-vindo!</p>
+    <div
+      className="d-flex justify-content-end align-items-center"
+      style={{ minHeight: "100vh" , paddingRight: "450px" }}
+    >
+      <div
+        className="card shadow-lg p-4"
+        style={{
+          width: "360px",
+          border: "1px solid #4CB917",
+          borderRadius: "15px",
+        }}
+      >
+        <p className="text-muted mb-1" style={{ fontSize: "14px" }}>
+          Seja bem-vindo!
+        </p>
         <h3 className="fw-bold mb-3">Entrar</h3>
 
         <form onSubmit={handleSubmit}>
