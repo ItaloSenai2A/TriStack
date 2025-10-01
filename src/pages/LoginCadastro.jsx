@@ -1,271 +1,198 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+"use client"
 
-function LoginCadastro({ onLogin }) {
-  const [modoCadastro, setModoCadastro] = useState(true);
-  // const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [erro, setErro] = useState("");
-  const navigate = useNavigate();
+import { useState } from "react"
 
-  const cores = {
-    fundo: "#F2F2F2",
-    texto: "#1C1C1C",
-    destaque: "#8B0000",
-    hover: "#A30000",
-    borda: "#D4AF37",
-  };
+function LoginCadastro() {
+  const [isLogin, setIsLogin] = useState(false)
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    telefone: "",
+    senha: "",
+  })
 
-  useEffect(() => {
-    if (localStorage.getItem("usuario")) {
-      navigate("/"); // Redireciona para a página principal
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (isLogin) {
+      console.log("Login submitted:", { email: formData.email, senha: formData.senha })
+    } else {
+      console.log("Cadastro submitted:", formData)
     }
-  }, [navigate]);
+  }
 
-  const handleSubmitCadastro = async (e) => {
-    e.preventDefault();
-    if (!email.trim() || !senha.trim()) {
-      setErro("Preencha todos os campos.");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setErro("E-mail inválido.");
-      return;
-    }
-
-    if (senha.length < 6) {
-      setErro("A senha deve ter pelo menos 6 caracteres.");
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        "https://totalhealth.somee.com/Users/register",
-        {
-          method: "POST",
-          headers: { accept: "*/*", "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password: senha }),
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        if (errorData.errors?.DuplicateUserName) {
-          setErro("E-mail já cadastrado. Tente outro e-mail.");
-        } else {
-          setErro(errorData.title || "Erro ao cadastrar.");
-        }
-        return;
-      }
-
-      setModoCadastro(false);
-      setErro("");
-      setEmail("");
-      setSenha("");
-      alert("Cadastro realizado com sucesso! Faça login para continuar.");
-    } catch (error) {
-      console.error("Erro ao conectar com o servidor:", error);
-      setErro("Erro ao conectar com o servidor.");
-    }
-  };
-
-  const handleSubmitLogin = async (e) => {
-    e.preventDefault();
-    if (!email.trim() || !senha.trim()) {
-      setErro("Preencha e-mail e senha.");
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        "https://totalhealth.somee.com/Users/login?useCookies=false&useSessionCookies=false",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({ email, password: senha }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setErro(data.message || "E-mail ou senha incorretos.");
-        return;
-      }
-
-      // Capturar o token e o userId da resposta
-      const token = data.accessToken;
-
-      // Salvar o token e o userId no localStorage
-      if (typeof token === "string") {
-        localStorage.setItem("token", token);
-      } else {
-        console.error("Token inválido:", token);
-        setErro("Erro ao processar o token de autenticação.");
-        return;
-      }
-
-      if (onLogin) onLogin({ email });
-      // Verificando se o perfil do usuário existe
-      const profileResponse = await fetch(
-        `https://totalhealth.somee.com/api/UsuariosLogin/${email}`,
-        {
-          method: "GET",
-          headers: {
-            accept: "text/plain",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (profileResponse.status === 204) {
-        navigate("/usuarioLogin"); // Redireciona para a página de edição de perfil
-      }
-
-      if (!profileResponse.ok) {
-        throw new Error("Erro ao verificar o perfil do usuário");
-      }
-
-      if (profileResponse.ok) {
-        const profileData = await profileResponse.json();
-        // Se o perfil não existir, redireciona para a página de edição de perfil
-        console.log("Perfil do usuário encontrado:", profileData);
-        localStorage.setItem("usuario", JSON.stringify(profileData));
-        window.location.reload(); // Recarrega a página para atualizar o estado do usuário
-      }
-    } catch (error) {
-      console.error("Erro ao conectar com o servidor:", error);
-      setErro("Erro ao conectar com o servidor.");
-    }
-  };
+  const toggleMode = () => {
+    setIsLogin(!isLogin)
+    // Reset form when switching modes
+    setFormData({
+      nome: "",
+      email: "",
+      telefone: "",
+      senha: "",
+    })
+  }
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
-      style={{
-        minHeight: "100vh",
-        backgroundColor: cores.fundo,
-        padding: "20px",
-      }}
+      className="d-flex align-items-center justify-content-center min-vh-100 p-4"
+      style={{ backgroundColor: "#f8f9fa" }}
     >
       <div
-        className="card shadow p-4"
+        className="p-4 rounded shadow"
         style={{
-          width: "90%",
-          maxWidth: "450px",
-          minWidth: "280px",
+          width: "100%",
+          maxWidth: "400px",
           backgroundColor: "#ffffff",
-          border: `2px solid ${cores.borda}`,
-          borderRadius: "20px",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+          border: "2px solid #4caf50",
+          borderRadius: "15px",
         }}
       >
-        <h2
-          className="text-center mb-4"
-          style={{
-            color: cores.texto,
-            fontWeight: "600",
-            fontSize: "26px",
-          }}
-        >
-          {modoCadastro ? "Crie sua conta" : "Bem-vindo de volta"}
-        </h2>
+        <div className="text-center mb-4">
+          <p className="mb-2" style={{ color: "#6c757d", fontSize: "14px" }}>
+            Seja bem vindo!
+          </p>
+          <h2 className="fw-bold" style={{ color: "#2e7d32", fontSize: "28px" }}>
+            {isLogin ? "Login" : "Cadastrar"}
+          </h2>
+        </div>
 
-        <form
-          onSubmit={modoCadastro ? handleSubmitCadastro : handleSubmitLogin}
-        >
-          {/* {modoCadastro && (
+        <form onSubmit={handleSubmit}>
+          {!isLogin && (
             <div className="mb-3">
-              <label className="form-label" style={{ fontWeight: "500" }}>
-                Nome completo:
+              <label htmlFor="nome" className="form-label" style={{ color: "#424242", fontWeight: "500" }}>
+                Nome
               </label>
               <input
                 type="text"
-                className="form-control rounded-pill"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
+                className="form-control"
+                id="nome"
+                name="nome"
+                placeholder="Nome"
+                value={formData.nome}
+                onChange={handleInputChange}
+                style={{
+                  borderColor: "#4caf50",
+                  borderRadius: "8px",
+                  padding: "12px",
+                  fontSize: "14px",
+                }}
                 required
               />
             </div>
-          )} */}
+          )}
 
           <div className="mb-3">
-            <label className="form-label" style={{ fontWeight: "500" }}>
-              E-mail:
+            <label htmlFor="email" className="form-label" style={{ color: "#424242", fontWeight: "500" }}>
+              Email
             </label>
             <input
               type="email"
-              className="form-control rounded-pill"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              id="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              style={{
+                borderColor: "#4caf50",
+                borderRadius: "8px",
+                padding: "12px",
+                fontSize: "14px",
+              }}
               required
             />
           </div>
 
-          <div className="mb-3">
-            <label className="form-label" style={{ fontWeight: "500" }}>
-              Senha:
-            </label>
-            <input
-              type="password"
-              className="form-control rounded-pill"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              required
-            />
-          </div>
-
-          {erro && (
-            <div
-              className="mb-3"
-              style={{ color: "#C0392B", fontWeight: "500", fontSize: "14px" }}
-            >
-              {erro}
+          {!isLogin && (
+            <div className="mb-3">
+              <label htmlFor="telefone" className="form-label" style={{ color: "#424242", fontWeight: "500" }}>
+                Telefone
+              </label>
+              <input
+                type="tel"
+                className="form-control"
+                id="telefone"
+                name="telefone"
+                placeholder="Telefone"
+                value={formData.telefone}
+                onChange={handleInputChange}
+                style={{
+                  borderColor: "#4caf50",
+                  borderRadius: "8px",
+                  padding: "12px",
+                  fontSize: "14px",
+                }}
+                required
+              />
             </div>
           )}
 
+          <div className="mb-4">
+            <label htmlFor="senha" className="form-label" style={{ color: "#424242", fontWeight: "500" }}>
+              Senha
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              id="senha"
+              name="senha"
+              placeholder="Senha"
+              value={formData.senha}
+              onChange={handleInputChange}
+              style={{
+                borderColor: "#4caf50",
+                borderRadius: "8px",
+                padding: "12px",
+                fontSize: "14px",
+              }}
+              required
+            />
+          </div>
+
           <button
             type="submit"
-            className="btn w-100 rounded-pill"
+            className="btn w-100 mb-3"
             style={{
-              backgroundColor: cores.destaque,
-              color: "#fff",
+              backgroundColor: "#2e7d32",
+              borderColor: "#2e7d32",
+              color: "white",
+              padding: "12px",
+              borderRadius: "8px",
+              fontSize: "16px",
               fontWeight: "600",
-              transition: "background-color 0.3s",
+              transition: "all 0.3s ease",
             }}
-            onMouseOver={(e) => (e.target.style.backgroundColor = cores.hover)}
-            onMouseOut={(e) =>
-              (e.target.style.backgroundColor = cores.destaque)
-            }
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#1b5e20")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#2e7d32")}
           >
-            {modoCadastro ? "Cadastrar" : "Entrar"}
+            {isLogin ? "Entrar" : "Cadastrar"}
           </button>
 
-          <p
-            className="text-center mt-3"
-            style={{ fontSize: "14px", color: cores.texto }}
-          >
-            {modoCadastro ? "Já tem uma conta?" : "Ainda não tem uma conta?"}{" "}
-            <span
-              style={{ color: cores.destaque, cursor: "pointer" }}
-              onClick={() => {
-                setModoCadastro(!modoCadastro);
-                setErro("");
+          <div className="text-center">
+            <button
+              type="button"
+              className="btn btn-link text-decoration-none"
+              onClick={toggleMode}
+              style={{
+                color: "#2e7d32",
+                fontSize: "14px",
+                fontWeight: "500",
               }}
             >
-              {modoCadastro ? "Entrar" : "Cadastrar"}
-            </span>
-          </p>
+              {isLogin ? "Não possui conta? Fazer Cadastro" : "Já possui conta? Fazer Login"}
+            </button>
+          </div>
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default LoginCadastro;
+export default LoginCadastro
