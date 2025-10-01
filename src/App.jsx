@@ -20,41 +20,18 @@ function App() {
   };
 
   return (
-    <div style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+    <div>
       <TopBar />
 
       <div
-        className={`position-fixed top-0 start-0 w-100 h-100 ${
-          isMobileMenuOpen ? "d-block" : "d-none"
-        }`}
-        style={{
-          backgroundColor: "rgba(0, 0, 0, 0.6)",
-          zIndex: 999,
-          transition: "all 0.3s ease",
-        }}
+        className={isMobileMenuOpen ? "d-block" : "d-none"}
         onClick={closeMobileMenu}
       ></div>
 
       {/* Sidebar */}
       <Sidebar isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
 
-      <div
-        className="d-flex flex-column"
-        style={{
-          marginLeft: "0",
-          minHeight: "100vh",
-          transition: "margin-left 0.3s ease",
-        }}
-      >
-        <style>
-          {`
-            @media (min-width: 992px) {
-              .main-content {
-                margin-left: 280px;
-              }
-            }
-          `}
-        </style>
+      <div className="d-flex flex-column">
         <div className="main-content">
           <Header />
           <HeaderMobile
@@ -62,7 +39,7 @@ function App() {
             isMenuOpen={isMobileMenuOpen}
           />
 
-          <main className="flex-grow-1">
+          <main>
             <LoginCadastro />
           </main>
 
