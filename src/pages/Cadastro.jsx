@@ -28,7 +28,7 @@ const Cadastro = () => {
   return (
     <div
       className="d-flex justify-content-end align-items-center"
-      style={{ minHeight: "100vh", paddingRight: "325px" }}
+      style={{ minHeight: "100vh", paddingRight: "450px" }}
     >
       <div
         className="card shadow-lg p-4"
