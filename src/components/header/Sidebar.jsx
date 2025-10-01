@@ -1,4 +1,5 @@
-"use client"
+"use client";
+import LogoTriStack from "../../assets/LogoTriStack.png";
 
 const menuItems = [
   { icon: "bi-house", label: "Home", href: "/" },
@@ -7,78 +8,102 @@ const menuItems = [
   { icon: "bi-gear", label: "Configurações", href: "/configuracoes" },
   { icon: "bi-shield-check", label: "Administração da Área", href: "/admin" },
   { icon: "bi-box-arrow-right", label: "Sair", href: "/logout" },
-]
+];
 
-function Sidebar({ isOpen, onClose }) {
+function Sidebar({ isOpen }) {
   return (
     <div
-      className={`position-fixed top-0 start-0 h-100 ${isOpen ? "d-block" : "d-none d-lg-block"}`}
+      className={`position-fixed top-0 ${isOpen ? "d-block" : "d-none d-lg-block"}`}
       style={{
+        left: 0,
+        top: 0,
+        bottom: 0,
         width: "280px",
-        backgroundColor: "#c8e6c9",
+        height: "100vh",
+        backgroundColor: "#D2DCC5",
         zIndex: 1000,
         boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
+        fontFamily: "'Josefin Sans', sans-serif",
+        overflowY: "auto",
+        margin: 0,
+        padding: 0,
+        border: "none",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        position: "relative", // Necessário para posicionar a borda lateral
       }}
     >
-      {/* Logo */}
-      <div className="p-4" style={{ borderBottom: "1px solid #a5d6a7" }}>
-        <div className="d-flex align-items-center">
-          <div className="me-3">
-            <div
-              className="d-flex align-items-center justify-content-center rounded"
-              style={{
-                width: "48px",
-                height: "48px",
-                backgroundColor: "#2e7d32",
-                color: "white",
-                fontSize: "24px",
-              }}
-            >
-              🌲
-            </div>
-          </div>
-          <div>
-            <h2 className="mb-0 fw-bold" style={{ color: "#1b5e20", fontSize: "24px" }}>
-              TriStack
-            </h2>
-          </div>
-        </div>
+      {/* Logo centralizada */}
+      <div
+        className="d-flex flex-column align-items-center justify-content-center"
+        style={{
+          marginTop: "20px",
+        }}
+      >
+        <img
+          src={LogoTriStack}
+          alt="Logo TriStack"
+          width={200}
+          height={200}
+          style={{ objectFit: "contain" }}
+        />
       </div>
 
-      {/* Menu Items */}
-      <nav className="p-3">
-        <ul className="nav flex-column" style={{ listStyle: "none", padding: 0 }}>
+      {/* Menu Items abaixo da logo */}
+      <nav className="px-3 pt-4" style={{ width: "100%" }}>
+        <ul className="nav flex-column" style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {menuItems.map((item) => (
-            <li key={item.label} className="nav-item mb-2">
+            <li
+              key={item.label}
+              className="nav-item"
+              style={{
+                marginBottom: "20px", // Espaçamento entre os itens
+              }}
+            >
               <a
                 href={item.href}
-                className="nav-link d-flex align-items-center text-decoration-none"
+                className="nav-link d-flex align-items-center px-3 py-2 rounded"
                 style={{
-                  color: "#2e7d32",
-                  padding: "12px 16px",
-                  borderRadius: "8px",
+                  color: "#000000",
                   fontSize: "16px",
-                  fontWeight: "500",
-                  transition: "all 0.3s ease",
+                  fontWeight: "700",
+                  textDecoration: "none",
+                  transition: "background-color 0.3s ease, color 0.3s ease",
+                  gap: "12px",
+                  fontFamily: "'Josefin Sans', sans-serif",
+                  paddingLeft: "20px",
                 }}
                 onMouseOver={(e) => {
-                  e.target.style.backgroundColor = "#a5d6a7"
-                  e.target.style.color = "#1b5e20"
+                  e.currentTarget.style.backgroundColor = "#a5d6a7";
+                  e.currentTarget.style.color = "#1b5e20";
                 }}
                 onMouseOut={(e) => {
-                  e.target.style.backgroundColor = "transparent"
-                  e.target.style.color = "#2e7d32"
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.color = "#000000";
                 }}
               >
-                <i className={`${item.icon} me-3`} style={{ fontSize: "18px" }}></i>
+                <i className={`${item.icon}`} style={{ fontSize: "18px" }}></i>
                 {item.label}
               </a>
             </li>
           ))}
         </ul>
       </nav>
+
+      {/* Borda fina no lado direito */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          height: "100%",
+          width: "2px", // Espessura da borda
+          backgroundColor: "#246816", // Cor da borda
+        }}
+      ></div>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;
