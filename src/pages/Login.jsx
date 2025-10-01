@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = () => {
+  const navigate = useNavigate(); 
+
   const [formData, setFormData] = useState({
     email: "",
     senha: "",
@@ -15,23 +18,23 @@ const Login = () => {
     e.preventDefault();
     console.log("Tentando login com:", formData);
 
-    // Exemplo: salvar no localStorage
+    // Exemplo simples: salvar no localStorage
     localStorage.setItem("usuario", formData.email);
 
     // Redirecionar após login bem-sucedido
-    window.location.href = "/dashboard"; // você pode trocar para a rota que quiser
+    navigate("/dashboard"); // usa a rota SPA
   };
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh" }}
+      className="d-flex justify-content-end align-items-center"
+      style={{ minHeight: "100vh" , paddingRight: "325px" }}
     >
       <div
         className="card shadow-lg p-4"
         style={{
           width: "360px",
-          border: "1px solid #4CAF50",
+          border: "1px solid #4CB917",
           borderRadius: "15px",
         }}
       >
@@ -69,7 +72,7 @@ const Login = () => {
             type="submit"
             className="btn w-100"
             style={{
-              backgroundColor: "#4CAF50",
+              backgroundColor: "#4CB917",
               color: "#fff",
               fontWeight: "500",
             }}
@@ -80,12 +83,12 @@ const Login = () => {
 
         <p className="mt-3 text-center" style={{ fontSize: "14px" }}>
           Não possui conta?{" "}
-          <a
-            href="/cadastro"
+          <Link
+            to="/cadastro"
             style={{ textDecoration: "none", fontWeight: "600" }}
           >
             Cadastrar-se
-          </a>
+          </Link>
         </p>
       </div>
     </div>

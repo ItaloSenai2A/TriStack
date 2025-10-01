@@ -24,43 +24,41 @@ function Sidebar({ isOpen }) {
         zIndex: 1000,
         boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
         fontFamily: "'Josefin Sans', sans-serif",
-        overflowY: "auto",
-        margin: 0,
-        padding: 0,
-        border: "none",
+        overflowY: "hidden", // sem scroll
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        position: "relative", // Necessário para posicionar a borda lateral
+        justifyContent: "space-between", // distribui logo em cima, menu no meio e borda no final
+        position: "relative",
+        padding: "20px 0",
       }}
     >
-      {/* Logo centralizada */}
-      <div
-        className="d-flex flex-column align-items-center justify-content-center"
-        style={{
-          marginTop: "20px",
-        }}
-      >
+      {/* Logo no topo */}
+      <div className="d-flex flex-column align-items-center">
         <img
           src={LogoTriStack}
           alt="Logo TriStack"
-          width={200}
-          height={200}
+          width={180}
+          height={180}
           style={{ objectFit: "contain" }}
         />
       </div>
 
-      {/* Menu Items abaixo da logo */}
-      <nav className="px-3 pt-4" style={{ width: "100%" }}>
-        <ul className="nav flex-column" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+      {/* Menu central */}
+      <nav className="px-3" style={{ width: "100%", flex: 1 }}>
+        <ul
+          className="nav flex-column"
+          style={{
+            listStyle: "none",
+            padding: 0,
+            margin: 0,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center", // centraliza menu verticalmente
+          }}
+        >
           {menuItems.map((item) => (
-            <li
-              key={item.label}
-              className="nav-item"
-              style={{
-                marginBottom: "20px", // Espaçamento entre os itens
-              }}
-            >
+            <li key={item.label} className="nav-item" style={{ marginBottom: "20px" }}>
               <a
                 href={item.href}
                 className="nav-link d-flex align-items-center px-3 py-2 rounded"
@@ -91,15 +89,15 @@ function Sidebar({ isOpen }) {
         </ul>
       </nav>
 
-      {/* Borda fina no lado direito */}
+      {/* Borda direita */}
       <div
         style={{
           position: "absolute",
           top: 0,
           right: 0,
           height: "100%",
-          width: "2px", // Espessura da borda
-          backgroundColor: "#246816", // Cor da borda
+          width: "2px",
+          backgroundColor: "#246816",
         }}
       ></div>
     </div>

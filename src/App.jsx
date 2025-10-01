@@ -1,12 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom"; // só Routes e Route, sem BrowserRouter
+
 import Sidebar from "./components/header/Sidebar.jsx";
 import Header from "./components/header/Header.jsx";
 import HeaderMobile from "./components/header/HeaderMobile.jsx";
 import TopBar from "./components/header/TopBar.jsx";
-import LoginCadastro from "./pages/LoginCadastro.jsx";
 import Footer from "./components/footer/Footer.jsx";
+
+import Login from "./pages/Login.jsx";
+import Cadastro from "./pages/Cadastro.jsx";
+
+// Exemplo de Home
+function Home() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>🏠 Bem-vindo à Home!</h1>
+      <p>Agora você está logado no sistema TriStack - Versão 2.0.</p>
+    </div>
+  );
+}
+
+// Exemplo de Dashboard
+function Dashboard() {
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>📊 Dashboard</h1>
+      <p>Área interna do sistema.</p>
+    </div>
+  );
+}
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,7 +44,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <TopBar />
 
       <div
@@ -28,7 +52,6 @@ function App() {
         onClick={closeMobileMenu}
       ></div>
 
-      {/* Sidebar */}
       <Sidebar isOpen={isMobileMenuOpen} onClose={closeMobileMenu} />
 
       <div className="d-flex flex-column">
@@ -40,13 +63,19 @@ function App() {
           />
 
           <main>
-            <LoginCadastro />
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
           </main>
 
           <Footer />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

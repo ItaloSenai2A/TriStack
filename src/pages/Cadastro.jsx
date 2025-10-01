@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import do react-router-dom
+import { Link, useNavigate } from "react-router-dom"; // import do useNavigate
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Cadastro = () => {
+  const navigate = useNavigate(); // hook de navegação
+
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
@@ -17,19 +19,22 @@ const Cadastro = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Dados cadastrados:", formData);
-    // Aqui você pode integrar com sua API ou salvar no localStorage
+
+    // aqui você pode salvar no localStorage ou chamar API
+    // depois redireciona pra Home
+    navigate("/home");
   };
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh" }}
+      className="d-flex justify-content-end align-items-center"
+      style={{ minHeight: "100vh", paddingRight: "325px" }}
     >
       <div
         className="card shadow-lg p-4"
         style={{
           width: "360px",
-          border: "1px solid #4CAF50",
+          border: "1px solid #4CB917",
           borderRadius: "15px",
         }}
       >
@@ -90,7 +95,7 @@ const Cadastro = () => {
             type="submit"
             className="btn w-100"
             style={{
-              backgroundColor: "#4CAF50",
+              backgroundColor: "#4CB917",
               color: "#fff",
               fontWeight: "500",
             }}
