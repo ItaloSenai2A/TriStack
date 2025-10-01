@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import do react-router-dom
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Cadastro = () => {
@@ -100,9 +101,12 @@ const Cadastro = () => {
 
         <p className="mt-3 text-center" style={{ fontSize: "14px" }}>
           Já possui conta?{" "}
-          <a href="/login" style={{ textDecoration: "none", fontWeight: "600" }}>
+          <Link
+            to="/login"
+            style={{ textDecoration: "none", fontWeight: "600" }}
+          >
             Fazer Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>

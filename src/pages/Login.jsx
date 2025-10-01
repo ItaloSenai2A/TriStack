@@ -18,8 +18,8 @@ const Login = () => {
     // Exemplo: salvar no localStorage
     localStorage.setItem("usuario", formData.email);
 
-    // Aqui você pode redirecionar para o dashboard, por exemplo:
-    // window.location.href = "/dashboard";
+    // Redirecionar após login bem-sucedido
+    window.location.href = "/dashboard"; // você pode trocar para a rota que quiser
   };
 
   return (
@@ -36,7 +36,7 @@ const Login = () => {
         }}
       >
         <p className="text-muted mb-1" style={{ fontSize: "14px" }}>
-          Seja bem vindo!
+          Seja bem-vindo!
         </p>
         <h3 className="fw-bold mb-3">Entrar</h3>
 
@@ -79,9 +79,12 @@ const Login = () => {
         </form>
 
         <p className="mt-3 text-center" style={{ fontSize: "14px" }}>
-          Já possui conta?{" "}
-          <a href="/cadastro" style={{ textDecoration: "none", fontWeight: "600" }}>
-            Fazer Login
+          Não possui conta?{" "}
+          <a
+            href="/cadastro"
+            style={{ textDecoration: "none", fontWeight: "600" }}
+          >
+            Cadastrar-se
           </a>
         </p>
       </div>
