@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom"; // só Routes e Route, sem BrowserRouter
+import { Routes, Route } from "react-router-dom";
 
 import Sidebar from "./components/header/Sidebar.jsx";
 import Header from "./components/header/Header.jsx";
@@ -11,37 +11,13 @@ import Footer from "./components/footer/Footer.jsx";
 
 import Login from "./pages/Login.jsx";
 import Cadastro from "./pages/Cadastro.jsx";
-
-// Exemplo de Home
-function Home() {
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>🏠 Bem-vindo à Home!</h1>
-      <p>Agora você está logado no sistema TriStack - Versão 2.0.</p>
-    </div>
-  );
-}
-
-// Exemplo de Dashboard
-function Dashboard() {
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>📊 Dashboard</h1>
-      <p>Área interna do sistema.</p>
-    </div>
-  );
-}
+import Home from "./pages/Home.jsx";
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
@@ -68,7 +44,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
           </main>
 
