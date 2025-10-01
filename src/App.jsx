@@ -12,17 +12,8 @@ import Footer from "./components/footer/Footer.jsx";
 
 import Login from "./pages/Login.jsx";
 import Cadastro from "./pages/Cadastro.jsx";
-import Dashboard from "./pages/Dashboard.jsx"; // ✅ Importa o Dashboard real
-
-// Exemplo de Home
-function Home() {
-  return (
-    <div style={{ padding: "20px" }}>
-      <h1>🏠 Bem-vindo à Home!</h1>
-      <p>Agora você está logado no sistema TriStack - Versão 2.0.</p>
-    </div>
-  );
-}
+import Dashboard from "./pages/Dashboard.jsx"; // ✅ Dashboard real
+import Home from "./pages/Home.jsx"; // ✅ Home real
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -54,9 +45,8 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
               <Route path="/cadastro" element={<Cadastro />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/dashboard" element={<Dashboard />} />{" "}
-              {/* ✅ Aqui está o dashboard real */}
+              <Route path="/home" element={<Home />} /> {/* ✅ Home real */}
+              <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Dashboard real */}
             </Routes>
           </main>
 
