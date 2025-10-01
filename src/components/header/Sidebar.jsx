@@ -1,8 +1,11 @@
 "use client";
+
+import React from "react";
+import { Link } from "react-router-dom";
 import LogoTriStack from "../../assets/LogoTriStack.png";
 
 const menuItems = [
-  { icon: "bi-house", label: "Home", href: "/" },
+  { icon: "bi-house", label: "Home", href: "/home" },
   { icon: "bi-bar-chart", label: "Dashboard", href: "/dashboard" },
   { icon: "bi-bell", label: "Alertas", href: "/alertas" },
   { icon: "bi-gear", label: "Configurações", href: "/configuracoes" },
@@ -24,11 +27,10 @@ function Sidebar({ isOpen }) {
         zIndex: 1000,
         boxShadow: "2px 0 10px rgba(0,0,0,0.1)",
         fontFamily: "'Josefin Sans', sans-serif",
-        overflowY: "hidden", // sem scroll
+        overflowY: "hidden",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between", // distribui logo em cima, menu no meio e borda no final
-        position: "relative",
+        justifyContent: "space-between",
         padding: "20px 0",
       }}
     >
@@ -54,13 +56,13 @@ function Sidebar({ isOpen }) {
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center", // centraliza menu verticalmente
+            justifyContent: "center",
           }}
         >
           {menuItems.map((item) => (
             <li key={item.label} className="nav-item" style={{ marginBottom: "20px" }}>
-              <a
-                href={item.href}
+              <Link
+                to={item.href} // <Link> do react-router-dom
                 className="nav-link d-flex align-items-center px-3 py-2 rounded"
                 style={{
                   color: "#000000",
@@ -83,7 +85,7 @@ function Sidebar({ isOpen }) {
               >
                 <i className={`${item.icon}`} style={{ fontSize: "18px" }}></i>
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
