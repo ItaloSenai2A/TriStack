@@ -1,89 +1,53 @@
-import { Link } from "react-router";
+"use client"
 
-const HeaderMobile = () => {
+function HeaderMobile({ onMenuToggle, isMenuOpen }) {
   return (
-    <nav
-      className="d-md-none d-block navbar navbar-dark navbar-expand-lg"
+    <header
+      className="d-md-none p-3"
       style={{
-        backgroundColor: "#D2DCC5",
-        padding: "0",
-        display: "flex",
-        flexDirection: "column",
-        zIndex: 1030,
+        backgroundColor: "#ffffff",
+        borderBottom: "2px solid #4caf50",
+        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
       }}
     >
-      {/* Topo com logo e botão */}
-      <div
-        className="container-fluid justify-content-start align-items-center gap-2"
-        style={{ height: "70px" }} // Reduzindo o espaçamento entre os elementos
-      >
+      <div className="d-flex justify-content-between align-items-center">
         <button
-          className="navbar-toggler border-0"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          style={{ alignSelf: "center", marginTop: "-12px" }} // Ajuste fino para alinhar com a logo
+          className="btn"
+          onClick={onMenuToggle}
+          aria-label="Toggle menu"
+          style={{
+            border: "2px solid #4caf50",
+            color: "#4caf50",
+            backgroundColor: "transparent",
+            borderRadius: "8px",
+            padding: "8px 12px",
+            fontSize: "18px",
+          }}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = "#4caf50"
+            e.target.style.color = "white"
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = "transparent"
+            e.target.style.color = "#4caf50"
+          }}
         >
-          <span className="navbar-toggler-icon"></span>
+          <i className={`bi ${isMenuOpen ? "bi-x" : "bi-list"}`}></i>
         </button>
-
-        <Link to={"/"}>
-          <img
-            className="logoMobile"
-            src="/src/assets/logomobile2.png"
-            alt="Transfusão+ Logo"
-            style={{ marginTop: "-11px", marginLeft: "-8px" }} // Aproximando mais a logo dos risquinhos
-          />
-        </Link>
+        <h1
+          className="h5 mb-0"
+          style={{
+            color: "#2e7d32",
+            fontWeight: "600",
+            fontSize: "20px",
+          }}
+        >
+          TriStack
+        </h1>
+        <div style={{ width: "40px" }}></div> {/* Spacer for centering */}
       </div>
+    </header>
+  )
+}
 
-      {/* Menu colapsável */}
-      <div
-        className="collapse navbar-collapse w-100"
-        id="navbarSupportedContent"
-        style={{
-          backgroundColor: "#8B0000",
-          transition: "height 0.35s ease",
-        }}
-      >
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0 px-3">
-          <li className="nav-item">
-            <a className="nav-link text-white" href="/home">
-              Home
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link text-white" href="/dashboard">
-              Dashboard
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link text-white" href="/alertas">
-              Alertas
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link text-white" href="/configuracoes">
-              Configurações
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link text-white" href="/administracao">
-              Administração da Área
-            </a>
-          </li>
-          </ul>
-        <div className="mt-4 px-3">
-          <Link className="nav-link text-white" to="/sair">
-            Sair
-          </Link>
-          </div>
-          </div>
-    </nav>
-  );
-};
-
-export default HeaderMobile;
+export default HeaderMobile
