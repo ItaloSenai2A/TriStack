@@ -9,11 +9,11 @@ const menuItems = [
   { icon: "bi-bar-chart", label: "Dashboard", href: "/dashboard" },
   { icon: "bi-bell", label: "Alertas", href: "/alertas" },
   { icon: "bi-gear", label: "Configurações", href: "/configuracoes" },
-  { icon: "bi-shield-check", label: "Administração da Área", href: "/admin" },
+  { icon: "bi-shield-check", label: "Administração da Área", href: "/administracao" }, // ✅ Corrigido
   { icon: "bi-box-arrow-right", label: "Sair", href: "/logout" },
 ];
 
-function Sidebar({ isOpen }) {
+function Sidebar({ isOpen, onClose }) {
   return (
     <div
       className={`position-fixed top-0 ${isOpen ? "d-block" : "d-none d-lg-block"}`}
@@ -34,7 +34,7 @@ function Sidebar({ isOpen }) {
         padding: "20px 0",
       }}
     >
-      {/* Logo no topo */}
+      {/* Logo */}
       <div className="d-flex flex-column align-items-center">
         <img
           src={LogoTriStack}
@@ -45,7 +45,7 @@ function Sidebar({ isOpen }) {
         />
       </div>
 
-      {/* Menu central */}
+      {/* Menu */}
       <nav className="px-3" style={{ width: "100%", flex: 1 }}>
         <ul
           className="nav flex-column"
@@ -62,7 +62,7 @@ function Sidebar({ isOpen }) {
           {menuItems.map((item) => (
             <li key={item.label} className="nav-item" style={{ marginBottom: "20px" }}>
               <Link
-                to={item.href} // <Link> do react-router-dom
+                to={item.href} // ✅ Link corresponde à rota do App.jsx
                 className="nav-link d-flex align-items-center px-3 py-2 rounded"
                 style={{
                   color: "#000000",
@@ -82,6 +82,7 @@ function Sidebar({ isOpen }) {
                   e.currentTarget.style.backgroundColor = "transparent";
                   e.currentTarget.style.color = "#000000";
                 }}
+                onClick={onClose} // Fecha menu mobile ao clicar
               >
                 <i className={`${item.icon}`} style={{ fontSize: "18px" }}></i>
                 {item.label}
