@@ -6,7 +6,6 @@ const Sair = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Limpar dados de sessão/localStorage se necessário
     console.log("Usuário saiu");
     navigate("/login");
   };
@@ -14,32 +13,46 @@ const Sair = () => {
   return (
     <div
       className="d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}
     >
+      {/* Card centralizado, mas ligeiramente para a direita */}
       <div
         className="card shadow-lg p-4"
         style={{
           width: "360px",
           border: "1px solid #4CB917",
           borderRadius: "15px",
+          textAlign: "center",
+          backgroundColor: "#fff",
+          transform: "translateX(20px)", // desloca 20px para a direita
         }}
       >
-        <p className="text-muted mb-1" style={{ fontSize: "14px" }}>
+        {/* Título dentro do card */}
+        <h1 style={{ fontSize: "32px", fontWeight: "700", marginBottom: "20px", color: "#333" }}>
+          Sair
+        </h1>
+
+        <p className="text-muted mb-3" style={{ fontSize: "16px" }}>
           Até logo!
         </p>
-        <h3 className="fw-bold mb-3">Sair</h3>
 
         <button
-          className="btn w-100"
-          style={{ backgroundColor: "#4CB917", color: "#fff", fontWeight: "500" }}
+          className="btn w-100 mb-3"
+          style={{
+            backgroundColor: "#4CB917",
+            color: "#fff",
+            fontWeight: "500",
+            fontSize: "16px",
+            padding: "10px 0",
+          }}
           onClick={handleLogout}
         >
           Sair
         </button>
 
-        <p className="mt-3 text-center" style={{ fontSize: "14px" }}>
+        <p style={{ fontSize: "14px" }}>
           Voltar para{" "}
-          <Link to="/home" style={{ textDecoration: "none", fontWeight: "600" }}>
+          <Link to="/home" style={{ textDecoration: "none", fontWeight: "600", color: "#4CB917" }}>
             Home
           </Link>
         </p>
