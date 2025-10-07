@@ -44,27 +44,32 @@ const Dashboard = () => {
 
       {/* Métricas */}
       <div className="row mb-4">
+        {/* Nível de Água */}
         <div className="col-md-4">
-          <div className="card text-center shadow-sm">
-            <div className="card-body">
-              <h5 className="card-title">Nível de Água</h5>
-              <p style={{ fontSize: '24px', color: '#007bff' }}>30%</p>
+          <div className="card shadow-sm h-100">
+            <div className="card-body d-flex flex-column justify-content-center align-items-center" style={{ height: '200px', padding: '20px' }}>
+              <h5 className="card-title text-center" style={{ fontSize: '18px', marginBottom: '10px' }}>Nível de Água</h5>
+              <p style={{ fontSize: '48px', fontWeight: 'bold', color: '#007bff', margin: 0 }}>30%</p>
             </div>
           </div>
         </div>
+
+        {/* Velocidade do Vento */}
         <div className="col-md-4">
-          <div className="card text-center shadow-sm">
-            <div className="card-body">
-              <h5 className="card-title">Velocidade do Vento</h5>
-              <p style={{ fontSize: '24px', color: '#fd7e14' }}>60 Km/h</p>
+          <div className="card shadow-sm h-100">
+            <div className="card-body d-flex flex-column justify-content-center align-items-center" style={{ height: '200px', padding: '20px' }}>
+              <h5 className="card-title text-center" style={{ fontSize: '18px', marginBottom: '10px' }}>Velocidade do Vento</h5>
+              <p style={{ fontSize: '48px', fontWeight: 'bold', color: '#fd7e14', margin: 0 }}>60 Km/h</p>
             </div>
           </div>
         </div>
+
+        {/* Qualidade do Ar */}
         <div className="col-md-4">
-          <div className="card text-center shadow-sm">
-            <div className="card-body">
-              <h5 className="card-title">Qualidade do Ar</h5>
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className="card text-center shadow-sm h-100">
+            <div className="card-body d-flex flex-column align-items-center justify-content-between" style={{ height: '200px' }}>
+              <h5 className="card-title" style={{ marginBottom: '10px' }}>Qualidade do Ar</h5>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <PieChart width={120} height={120}>
                   <Pie
                     data={airQualityColors}
@@ -80,8 +85,12 @@ const Dashboard = () => {
                     ))}
                   </Pie>
                 </PieChart>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
+                  <p style={{ fontWeight: 'bold', color: '#3DD34C', margin: 0 }}>Boa</p>
+                  <p style={{ fontWeight: 'bold', color: '#E5EF57', margin: 0 }}>Moderada</p>
+                  <p style={{ fontWeight: 'bold', color: '#FF4C4C', margin: 0 }}>Ruim</p>
+                </div>
               </div>
-              <p style={{ fontWeight: 'bold', color: '#FF4C4C' }}>Ruim</p>
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@ const Home = () => {
     >
       {/* Cabeçalho */}
       <div className="d-flex justify-content-center align-items-center mb-4" style={{ width: "100%", maxWidth: "1200px" }}>
-        <h2 className="fw-bold text-center">Visão Geral - Floresta Amazônica</h2>
+        <h2 className="fw-bold text-center">Visão Geral</h2>
       </div>
 
       {/* Cards de dados ambientais */}
@@ -63,7 +63,7 @@ const Home = () => {
 
       {/* Mapa da Floresta Amazônica */}
       <h4 className="fw-bold mb-3 text-center" style={{ width: "100%", maxWidth: "1200px" }}>
-        Mapa da Floresta Amazônica - Alertas Ambientais
+        Mapa do Território - Alertas Ambientais
       </h4>
       <div
         style={{

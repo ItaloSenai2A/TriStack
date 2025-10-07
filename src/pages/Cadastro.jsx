@@ -16,8 +16,18 @@ const Cadastro = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Dados cadastrados:", formData);
-    navigate("/home");
+
+    // Pega os usuários já cadastrados ou cria um array vazio
+    const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    // Adiciona o novo usuário
+    usuarios.push(formData);
+
+    // Salva de volta no localStorage
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+    alert("Cadastro realizado com sucesso!");
+    navigate("/login"); // Redireciona para o login
   };
 
   return (
@@ -39,11 +49,56 @@ const Cadastro = () => {
         <h3 className="fw-bold mb-3">Cadastrar</h3>
 
         <form onSubmit={handleSubmit}>
-          <div className="mb-3"><input type="text" name="nome" className="form-control" placeholder="Nome" value={formData.nome} onChange={handleChange} required /></div>
-          <div className="mb-3"><input type="email" name="email" className="form-control" placeholder="Email" value={formData.email} onChange={handleChange} required /></div>
-          <div className="mb-3"><input type="tel" name="telefone" className="form-control" placeholder="Telefone" value={formData.telefone} onChange={handleChange} /></div>
-          <div className="mb-3"><input type="password" name="senha" className="form-control" placeholder="Senha" value={formData.senha} onChange={handleChange} required /></div>
-          <button type="submit" className="btn w-100" style={{ backgroundColor: "#4CB917", color: "#fff", fontWeight: "500" }}>Cadastrar</button>
+          <div className="mb-3">
+            <input
+              type="text"
+              name="nome"
+              className="form-control"
+              placeholder="Nome"
+              value={formData.nome}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="email"
+              name="email"
+              className="form-control"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="tel"
+              name="telefone"
+              className="form-control"
+              placeholder="Telefone"
+              value={formData.telefone}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              name="senha"
+              className="form-control"
+              placeholder="Senha"
+              value={formData.senha}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="btn w-100"
+            style={{ backgroundColor: "#4CB917", color: "#fff", fontWeight: "500" }}
+          >
+            Cadastrar
+          </button>
         </form>
 
         <p className="mt-3 text-center" style={{ fontSize: "14px" }}>

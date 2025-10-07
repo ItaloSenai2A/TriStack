@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoTriStack from "../../assets/LogoTriStack.png";
 
 const menuItems = [
@@ -9,14 +9,21 @@ const menuItems = [
   { icon: "bi-bar-chart", label: "Dashboard", href: "/dashboard" },
   { icon: "bi-bell", label: "Alertas", href: "/alertas" },
   { icon: "bi-gear", label: "Configurações", href: "/configuracoes" },
+  { icon: "bi-shield-check", label: "Administração da Área", href: "/admin" },
+  { icon: "bi-box-arrow-right", label: "Sair", href: "/sair" },
   { icon: "bi-shield-check", label: "Administração da Área", href: "/administracao" }, // ✅ Corrigido
   { icon: "bi-box-arrow-right", label: "Sair", href: "/logout" },
 ];
 
+function Sidebar({ isOpen }) {
+  const navigate = useNavigate();
+
 function Sidebar({ isOpen, onClose }) {
   return (
     <div
-      className={`position-fixed top-0 ${isOpen ? "d-block" : "d-none d-lg-block"}`}
+      className={`position-fixed top-0 ${
+        isOpen ? "d-block" : "d-none d-lg-block"
+      }`}
       style={{
         left: 0,
         top: 0,
@@ -34,6 +41,7 @@ function Sidebar({ isOpen, onClose }) {
         padding: "20px 0",
       }}
     >
+      {/* ✅ Logo clicável que leva pra Home */}
       {/* Logo */}
       <div className="d-flex flex-column align-items-center">
         <img
@@ -41,7 +49,14 @@ function Sidebar({ isOpen, onClose }) {
           alt="Logo TriStack"
           width={180}
           height={180}
-          style={{ objectFit: "contain" }}
+          style={{
+            objectFit: "contain",
+            cursor: "pointer",
+            transition: "transform 0.2s ease",
+          }}
+          onClick={() => navigate("/home")}
+          onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+          onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
         />
       </div>
 
@@ -62,6 +77,7 @@ function Sidebar({ isOpen, onClose }) {
           {menuItems.map((item) => (
             <li key={item.label} className="nav-item" style={{ marginBottom: "20px" }}>
               <Link
+                to={item.href}
                 to={item.href} // ✅ Link corresponde à rota do App.jsx
                 className="nav-link d-flex align-items-center px-3 py-2 rounded"
                 style={{
