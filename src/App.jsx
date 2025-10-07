@@ -10,6 +10,7 @@ import Header from "./components/header/Header.jsx";
 import HeaderMobile from "./components/header/HeaderMobile.jsx";
 import TopBar from "./components/header/TopBar.jsx";
 import Footer from "./components/footer/Footer.jsx";
+import PrivateRoute from "./components/rotas/PrivateRoute.jsx";
 
 // 🧭 Páginas
 import Login from "./pages/Login.jsx";
@@ -50,16 +51,39 @@ function App() {
           />
 
           <main>
-            <Routes>
-              {/* Rotas do sistema */}
-              <Route path="/" element={<Login />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/cadastro" element={<Cadastro />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/alertas" element={<Alertas />} />
-              <Route path="/sair" element={<Sair />} /> {/* ✅ Nova rota adicionada */}
-            </Routes>
+          <Routes>
+  {/* Rotas públicas */}
+  <Route path="/" element={<Login />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/cadastro" element={<Cadastro />} />
+
+  {/* Rotas privadas */}
+  <Route
+    path="/home"
+    element={
+      <PrivateRoute>
+        <Home />
+      </PrivateRoute>
+    }
+  />
+  <Route
+    path="/dashboard"
+    element={
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    }
+  />
+  <Route
+    path="/alertas"
+    element={
+      <PrivateRoute>
+        <Alertas />
+      </PrivateRoute>
+    }
+  />
+  <Route path="/sair" element={<Sair />} />
+</Routes>
           </main>
 
           {/* Rodapé */}
