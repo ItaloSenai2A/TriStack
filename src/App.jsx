@@ -11,6 +11,7 @@ import Footer from "./components/footer/Footer.jsx";
 
 import Login from "./pages/Login.jsx";
 import Cadastro from "./pages/Cadastro.jsx";
+import Alertas from "./pages/Alertas.jsx"; // 👈 importa a tela de Alertas
 
 // Exemplo de Home
 function Home() {
@@ -69,6 +70,7 @@ function App() {
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/home" element={<Home />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/alertas" element={<Alertas />} /> {/* 👈 nova rota */}
             </Routes>
           </main>
 
