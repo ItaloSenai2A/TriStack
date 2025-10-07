@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoTriStack from "../../assets/LogoTriStack.png";
 
 const menuItems = [
@@ -10,13 +10,17 @@ const menuItems = [
   { icon: "bi-bell", label: "Alertas", href: "/alertas" },
   { icon: "bi-gear", label: "Configurações", href: "/configuracoes" },
   { icon: "bi-shield-check", label: "Administração da Área", href: "/admin" },
-  { icon: "bi-box-arrow-right", label: "Sair", href: "/sair" }, // ✅ Corrigido
+  { icon: "bi-box-arrow-right", label: "Sair", href: "/sair" },
 ];
 
 function Sidebar({ isOpen }) {
+  const navigate = useNavigate();
+
   return (
     <div
-      className={`position-fixed top-0 ${isOpen ? "d-block" : "d-none d-lg-block"}`}
+      className={`position-fixed top-0 ${
+        isOpen ? "d-block" : "d-none d-lg-block"
+      }`}
       style={{
         left: 0,
         top: 0,
@@ -34,14 +38,21 @@ function Sidebar({ isOpen }) {
         padding: "20px 0",
       }}
     >
-      {/* Logo no topo */}
+      {/* ✅ Logo clicável que leva pra Home */}
       <div className="d-flex flex-column align-items-center">
         <img
           src={LogoTriStack}
           alt="Logo TriStack"
           width={180}
           height={180}
-          style={{ objectFit: "contain" }}
+          style={{
+            objectFit: "contain",
+            cursor: "pointer",
+            transition: "transform 0.2s ease",
+          }}
+          onClick={() => navigate("/home")}
+          onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+          onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
         />
       </div>
 
