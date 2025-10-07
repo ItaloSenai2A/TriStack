@@ -40,7 +40,6 @@ export default function Alertas() {
       minHeight: "100vh",
       fontFamily: "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial",
       background: "#f6f8fb",
-      margin: 0,
       color: "#0f172a",
     },
     sidebar: {
@@ -63,7 +62,6 @@ export default function Alertas() {
       justifyContent: "center",
       color: "#fff",
       fontWeight: 800,
-      boxShadow: "0 2px 6px rgba(15,23,42,0.08)",
     },
     logoText: { fontSize: 18, fontWeight: 800, color: "#0f6b3a" },
     nav: { marginTop: 12, display: "flex", flexDirection: "column", gap: 10 },
@@ -76,50 +74,36 @@ export default function Alertas() {
     },
     main: { flex: 1, display: "flex", flexDirection: "column" },
     header: {
-      padding: "14px 28px",
+      padding: "18px 28px",
       display: "flex",
       alignItems: "center",
-      justifyContent: "flex-start",
-      background: "#e9f6ef",
-      color: "#0f6b3a",
-      borderBottom: "1px solid rgba(15,111,58,0.06)",
-      position: "relative",
-    },
-    headerCenter: {
-      fontSize: 28,
-      fontWeight: 900,
-      color: "#0f6b3a",
-      textTransform: "capitalize",
-      letterSpacing: "0.2px",
-      marginLeft: 60,
+      justifyContent: "space-between",
+      background: "#34a853",
+      color: "#fff",
+      fontWeight: 700,
+      fontSize: 22,
     },
     profile: {
-      position: "absolute",
-      right: 28,
-      top: "50%",
-      transform: "translateY(-50%)",
       display: "flex",
       alignItems: "center",
       gap: 12,
-      color: "#0f6b3a",
-      fontWeight: 600,
     },
     avatar: {
       width: 36,
       height: 36,
       borderRadius: "50%",
-      background: "#dff3e6",
+      background: "#fff",
+      color: "#34a853",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      color: "#0f6b3a",
       fontWeight: 700,
     },
     contentWrap: {
       flex: 1,
       display: "flex",
       justifyContent: "center",
-      alignItems: "center", // centraliza verticalmente
+      alignItems: "center",
       padding: 28,
     },
     card: {
@@ -159,20 +143,6 @@ export default function Alertas() {
     itemTitle: { fontSize: 16, fontWeight: 700, color: "#0f172a" },
     itemDesc: { fontSize: 13, color: "#6b7280", marginTop: 6 },
     arrow: { marginLeft: 14, color: "#111827", opacity: 0.9 },
-
-    footer: {
-      marginTop: "auto",
-      background: "#000",
-      color: "#fff",
-      padding: "14px 28px",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      fontSize: 13,
-      gap: 6,
-    },
-    footerLinks: { display: "flex", gap: 12, color: "#f3f4f6" },
-
     modalOverlay: {
       position: "fixed",
       top: 0,
@@ -212,29 +182,29 @@ export default function Alertas() {
 
   const Icon = {
     critical: (
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
         <path d="M12 2L2 20h20L12 2z" fill="#E74C3C" />
-        <path d="M12 8v5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M12 16h.01" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 8v5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M12 16h.01" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
       </svg>
     ),
     moderate: (
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
         <path d="M12 2L2 20h20L12 2z" fill="#F1C40F" />
-        <path d="M12 8v5" stroke="#111827" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M12 16h.01" stroke="#111827" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 8v5" stroke="#111827" strokeWidth="1.6" strokeLinecap="round" />
+        <path d="M12 16h.01" stroke="#111827" strokeWidth="1.6" strokeLinecap="round" />
       </svg>
     ),
     info: (
-      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
         <circle cx="12" cy="12" r="10" fill="#3498DB" />
-        <path d="M12 10h.01" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 10h.01" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" />
         <path d="M11.2 12h1.6v3.2h-1.6z" fill="#fff" />
       </svg>
     ),
     chevron: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
-        <path d="M9 6l6 6-6 6" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M9 6l6 6-6 6" stroke="#111827" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
   };
@@ -249,7 +219,7 @@ export default function Alertas() {
           <div style={S.logoText}>TriStack</div>
         </div>
 
-        <nav style={S.nav} aria-label="menu">
+        <nav style={S.nav}>
           <div style={S.navItem}>Home</div>
           <div style={S.navItem}>Dashboard</div>
           <div style={{ ...S.navItem, fontWeight: 800 }}>Alertas</div>
@@ -260,15 +230,6 @@ export default function Alertas() {
       </aside>
 
       <main style={S.main}>
-        <header style={S.header}>
-          <div style={S.headerCenter}>Alertas</div>
-          <div style={S.profile}>
-            <div style={S.avatar} aria-hidden>
-              A
-            </div>
-            <div>Ana Almeida</div>
-          </div>
-        </header>
 
         <section style={S.contentWrap}>
           <div style={S.card}>
@@ -280,14 +241,6 @@ export default function Alertas() {
                     key={a.id}
                     style={S.item(c.border)}
                     onClick={() => setSelectedAlert(a)}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "translateY(-4px)";
-                      e.currentTarget.style.boxShadow = "0 10px 24px rgba(2,6,23,0.08)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.boxShadow = "inset 0 1px 0 rgba(15,23,42,0.02)";
-                    }}
                   >
                     <div style={S.itemLeft}>
                       <div style={S.iconWrap(c.border, c.iconBg)}>
@@ -295,13 +248,11 @@ export default function Alertas() {
                         {a.type === "moderate" && Icon.moderate}
                         {a.type === "info" && Icon.info}
                       </div>
-
                       <div style={S.itemTexts}>
                         <div style={S.itemTitle}>{a.title}</div>
                         <div style={S.itemDesc}>{a.desc}</div>
                       </div>
                     </div>
-
                     <div style={S.arrow}>{Icon.chevron}</div>
                   </div>
                 );
@@ -313,27 +264,19 @@ export default function Alertas() {
         {selectedAlert && (
           <div style={S.modalOverlay}>
             <div style={S.modalContent}>
-              <button style={S.closeButton} onClick={() => setSelectedAlert(null)}>
-                ×
+              <button
+                style={S.closeButton}
+                onClick={() => setSelectedAlert(null)}
+              >
+                X
               </button>
               <h2>{selectedAlert.title}</h2>
-              <p style={{ marginTop: 16, lineHeight: "1.5em" }}>{selectedAlert.modalText}</p>
+              <p style={{ marginTop: 20, lineHeight: "1.6em" }}>
+                {selectedAlert.modalText}
+              </p>
             </div>
           </div>
         )}
-
-        <footer style={S.footer}>
-          <div>© 2025 TriStack. Todos os direitos reservados.</div>
-          <div style={S.footerLinks}>
-            <a href="#" style={{ color: "inherit", textDecoration: "none" }}>
-              Sobre Nós
-            </a>
-            <span style={{ opacity: 0.5 }}>|</span>
-            <a href="#" style={{ color: "inherit", textDecoration: "none" }}>
-              Contato
-            </a>
-          </div>
-        </footer>
       </main>
     </div>
   );

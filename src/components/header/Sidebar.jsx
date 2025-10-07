@@ -10,7 +10,7 @@ const menuItems = [
   { icon: "bi-bell", label: "Alertas", href: "/alertas" },
   { icon: "bi-gear", label: "Configurações", href: "/configuracoes" },
   { icon: "bi-shield-check", label: "Administração da Área", href: "/admin" },
-  { icon: "bi-box-arrow-right", label: "Sair", href: "/logout" },
+  { icon: "bi-box-arrow-right", label: "Sair", href: "/sair" }, // ✅ Corrigido
 ];
 
 function Sidebar({ isOpen }) {
@@ -62,7 +62,7 @@ function Sidebar({ isOpen }) {
           {menuItems.map((item) => (
             <li key={item.label} className="nav-item" style={{ marginBottom: "20px" }}>
               <Link
-                to={item.href} // <Link> do react-router-dom
+                to={item.href}
                 className="nav-link d-flex align-items-center px-3 py-2 rounded"
                 style={{
                   color: "#000000",
