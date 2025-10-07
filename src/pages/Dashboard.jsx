@@ -85,7 +85,7 @@ const Dashboard = () => {
                     ))}
                   </Pie>
                 </PieChart>
-                <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
                   <p style={{ fontWeight: 'bold', color: '#3DD34C', margin: 0 }}>Boa</p>
                   <p style={{ fontWeight: 'bold', color: '#E5EF57', margin: 0 }}>Moderada</p>
                   <p style={{ fontWeight: 'bold', color: '#FF4C4C', margin: 0 }}>Ruim</p>
