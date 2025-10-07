@@ -1,30 +1,38 @@
 import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 export default function Alertas() {
   const alerts = [
     {
       id: 1,
+      type: "critical",
       title: "Notificação crítica",
       desc: "Ação imediata necessária",
-      type: "critical",
-      modalText:
+      alertTitle: "Alerta de incêndio",
+      description:
         "Os sensores detectaram uma combinação de alta temperatura e baixa umidade no canavial, aumentando significativamente o risco de incêndio. A situação exige atenção imediata do produtor, pois há chance de propagação rápida de fogo. Recomendamos verificar a área afetada e acionar medidas preventivas para evitar perdas e danos ambientais.",
+      buttonText: "ENTENDIDO",
     },
     {
       id: 2,
+      type: "moderate",
       title: "Notificação moderada",
       desc: "Verificar em breve",
-      type: "moderate",
-      modalText:
-        "Os sensores identificaram variação significativa na umidade e temperatura. Ainda não há risco imediato, mas recomenda-se monitorar a área e avaliar a necessidade de ajustes preventivos, como irrigação localizada ou verificação de equipamentos.",
+      alertTitle: "Atenção: Nível de umidade baixo",
+      description:
+        "Os sensores indicaram uma leve diminuição na umidade. Embora não seja uma emergência, é importante monitorar e considerar medidas preventivas para evitar estresse das plantas.",
+      buttonText: "OK",
     },
     {
       id: 3,
+      type: "info",
       title: "Notificação informativa",
       desc: "Somente para conhecimento",
-      type: "info",
-      modalText:
-        "Foram registradas pequenas alterações nas condições do campo, dentro da faixa de normalidade. Não há risco atual, mas os dados são importantes para o acompanhamento e histórico da produção.",
+      alertTitle: "Condições normais",
+      description:
+        "Os sensores indicam que todos os parâmetros ambientais estão dentro da normalidade. Nenhuma ação imediata é necessária.",
+      buttonText: "Certo",
     },
   ];
 
@@ -46,7 +54,6 @@ export default function Alertas() {
       width: 220,
       background: "#dff3e6",
       padding: "28px 20px",
-      boxSizing: "border-box",
       display: "flex",
       flexDirection: "column",
       gap: 18,
@@ -73,32 +80,6 @@ export default function Alertas() {
       userSelect: "none",
     },
     main: { flex: 1, display: "flex", flexDirection: "column" },
-    header: {
-      padding: "18px 28px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      background: "#34a853",
-      color: "#fff",
-      fontWeight: 700,
-      fontSize: 22,
-    },
-    profile: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-    },
-    avatar: {
-      width: 36,
-      height: 36,
-      borderRadius: "50%",
-      background: "#fff",
-      color: "#34a853",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontWeight: 700,
-    },
     contentWrap: {
       flex: 1,
       display: "flex",
@@ -142,45 +123,9 @@ export default function Alertas() {
     itemTexts: { display: "flex", flexDirection: "column" },
     itemTitle: { fontSize: 16, fontWeight: 700, color: "#0f172a" },
     itemDesc: { fontSize: 13, color: "#6b7280", marginTop: 6 },
-    arrow: { marginLeft: 14, color: "#111827", opacity: 0.9 },
-    modalOverlay: {
-      position: "fixed",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      background: "rgba(0,0,0,0.5)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 1000,
-    },
-    modalContent: {
-      background: "#fff",
-      borderRadius: 24,
-      padding: 24,
-      width: "500px",
-      maxWidth: "90%",
-      boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
-      position: "relative",
-      textAlign: "center",
-    },
-    closeButton: {
-      position: "absolute",
-      top: 12,
-      right: 12,
-      background: "#E74C3C",
-      color: "#fff",
-      border: "none",
-      borderRadius: "50%",
-      width: 28,
-      height: 28,
-      cursor: "pointer",
-      fontWeight: 700,
-    },
   };
 
-  const Icon = {
+  const IconSVG = {
     critical: (
       <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
         <path d="M12 2L2 20h20L12 2z" fill="#E74C3C" />
@@ -202,14 +147,101 @@ export default function Alertas() {
         <path d="M11.2 12h1.6v3.2h-1.6z" fill="#fff" />
       </svg>
     ),
-    chevron: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-        <path d="M9 6l6 6-6 6" stroke="#111827" strokeWidth="2" strokeLinecap="round" />
-      </svg>
-    ),
   };
 
   const [selectedAlert, setSelectedAlert] = useState(null);
+
+  const AlertModal = ({ show, onClose, type, alertTitle, title, description, buttonText }) => {
+    if (!show) return null;
+
+    const colors = {
+      critical: { main: "#E74C3C", border: "#0aad02" },
+      moderate: { main: "#F1C40F", border: "#0aad02" },
+      info: { main: "#3498DB", border: "#0aad02" },
+    };
+
+    const color = colors[type];
+
+    return (
+      <div
+        className="modal d-block"
+        tabIndex="-1"
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          zIndex: "1050",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <div
+          className="card mx-auto shadow-lg"
+          style={{
+            width: "430px",
+            borderRadius: "12px",
+            padding: "20px",
+            backgroundColor: "white",
+            position: "relative",
+          }}
+        >
+          <button
+            type="button"
+            onClick={onClose}
+            className="btn btn-sm d-flex align-items-center justify-content-center"
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              backgroundColor: color.main,
+              color: "white",
+              borderRadius: "50%",
+              width: "30px",
+              height: "30px",
+              border: "none",
+              fontWeight: "bold",
+            }}
+          >
+            ✕
+          </button>
+
+          <div className="text-center mb-3">{IconSVG[type]}</div>
+
+          <h4 className="text-center fw-bold mb-3" style={{ color: "#111827" }}>
+            {title}
+          </h4>
+
+          <div
+            className="text-center text-white fw-bold rounded mb-3 py-2"
+            style={{ backgroundColor: color.main, fontSize: "15px" }}
+          >
+            {alertTitle}
+          </div>
+
+          <div
+            className="border rounded p-3 mb-4"
+            style={{ borderColor: color.border, color: "#111827", fontSize: "15px" }}
+          >
+            {description}
+          </div>
+
+          <button
+            className="btn w-100 fw-bold text-white"
+            style={{
+              backgroundColor: color.border,
+              border: "none",
+              fontSize: "16px",
+              borderRadius: "8px",
+              padding: "10px",
+            }}
+            onClick={onClose}
+          >
+            {buttonText}
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div style={S.app}>
@@ -230,30 +262,20 @@ export default function Alertas() {
       </aside>
 
       <main style={S.main}>
-
         <section style={S.contentWrap}>
           <div style={S.card}>
             <div style={S.list}>
               {alerts.map((a) => {
                 const c = COLORS[a.type];
                 return (
-                  <div
-                    key={a.id}
-                    style={S.item(c.border)}
-                    onClick={() => setSelectedAlert(a)}
-                  >
+                  <div key={a.id} style={S.item(c.border)} onClick={() => setSelectedAlert(a)}>
                     <div style={S.itemLeft}>
-                      <div style={S.iconWrap(c.border, c.iconBg)}>
-                        {a.type === "critical" && Icon.critical}
-                        {a.type === "moderate" && Icon.moderate}
-                        {a.type === "info" && Icon.info}
-                      </div>
+                      <div style={S.iconWrap(c.border, c.iconBg)}>{IconSVG[a.type]}</div>
                       <div style={S.itemTexts}>
                         <div style={S.itemTitle}>{a.title}</div>
                         <div style={S.itemDesc}>{a.desc}</div>
                       </div>
                     </div>
-                    <div style={S.arrow}>{Icon.chevron}</div>
                   </div>
                 );
               })}
@@ -262,20 +284,15 @@ export default function Alertas() {
         </section>
 
         {selectedAlert && (
-          <div style={S.modalOverlay}>
-            <div style={S.modalContent}>
-              <button
-                style={S.closeButton}
-                onClick={() => setSelectedAlert(null)}
-              >
-                X
-              </button>
-              <h2>{selectedAlert.title}</h2>
-              <p style={{ marginTop: 20, lineHeight: "1.6em" }}>
-                {selectedAlert.modalText}
-              </p>
-            </div>
-          </div>
+          <AlertModal
+            show={true}
+            onClose={() => setSelectedAlert(null)}
+            type={selectedAlert.type}
+            title={selectedAlert.title}
+            alertTitle={selectedAlert.alertTitle}
+            description={selectedAlert.description}
+            buttonText={selectedAlert.buttonText}
+          />
         )}
       </main>
     </div>
