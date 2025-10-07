@@ -6,8 +6,11 @@ const Sair = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    // 🔒 Remove dados do login
+    localStorage.removeItem("usuarioLogado");
+
     console.log("Usuário saiu");
-    navigate("/login");
+    navigate("/login"); // 🔁 Redireciona para login
   };
 
   return (
@@ -15,7 +18,7 @@ const Sair = () => {
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}
     >
-      {/* Card centralizado, mas ligeiramente para a direita */}
+      {/* Card centralizado */}
       <div
         className="card shadow-lg p-4"
         style={{
@@ -24,11 +27,18 @@ const Sair = () => {
           borderRadius: "15px",
           textAlign: "center",
           backgroundColor: "#fff",
-          transform: "translateX(20px)", // desloca 20px para a direita
+          transform: "translateX(20px)",
         }}
       >
-        {/* Título dentro do card */}
-        <h1 style={{ fontSize: "32px", fontWeight: "700", marginBottom: "20px", color: "#333" }}>
+        {/* Título */}
+        <h1
+          style={{
+            fontSize: "32px",
+            fontWeight: "700",
+            marginBottom: "20px",
+            color: "#333",
+          }}
+        >
           Sair
         </h1>
 
@@ -52,7 +62,14 @@ const Sair = () => {
 
         <p style={{ fontSize: "14px" }}>
           Voltar para{" "}
-          <Link to="/home" style={{ textDecoration: "none", fontWeight: "600", color: "#4CB917" }}>
+          <Link
+            to="/home"
+            style={{
+              textDecoration: "none",
+              fontWeight: "600",
+              color: "#4CB917",
+            }}
+          >
             Home
           </Link>
         </p>
