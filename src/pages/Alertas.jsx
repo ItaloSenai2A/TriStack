@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-export default function Alertas() {
+export default function Alertas({ isDarkMode }) {
   const alerts = [
     {
       id: 1,
@@ -47,16 +47,17 @@ export default function Alertas() {
       display: "flex",
       minHeight: "100vh",
       fontFamily: "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial",
-      background: "#f6f8fb",
-      color: "#0f172a",
+      background: isDarkMode ? "#1b3a2f" : "#f6f8fb",
+      color: isDarkMode ? "#fff" : "#0f172a",
     },
     sidebar: {
       width: 220,
-      background: "#dff3e6",
+      background: isDarkMode ? "#14482b" : "#dff3e6",
       padding: "28px 20px",
       display: "flex",
       flexDirection: "column",
       gap: 18,
+      color: isDarkMode ? "#fff" : "#072014",
     },
     logoWrap: { display: "flex", alignItems: "center", gap: 12 },
     logoMark: {
@@ -70,10 +71,10 @@ export default function Alertas() {
       color: "#fff",
       fontWeight: 800,
     },
-    logoText: { fontSize: 18, fontWeight: 800, color: "#0f6b3a" },
+    logoText: { fontSize: 18, fontWeight: 800, color: isDarkMode ? "#fff" : "#0f6b3a" },
     nav: { marginTop: 12, display: "flex", flexDirection: "column", gap: 10 },
     navItem: {
-      color: "#072014",
+      color: isDarkMode ? "#fff" : "#072014",
       fontSize: 15,
       cursor: "pointer",
       padding: "6px 4px",
@@ -89,23 +90,25 @@ export default function Alertas() {
     },
     card: {
       width: 720,
-      background: "#fff",
+      background: isDarkMode ? "#709368" : "#fff", // verde escuro no dark
       borderRadius: 32,
-      padding: 18,
+      padding: 10,
       boxShadow: "0 8px 24px rgba(17,24,39,0.06)",
-      border: "1px solid rgba(15,111,58,0.08)",
+      border: isDarkMode ? "1px solid #fff" : "1px solid rgba(15,111,58,0.08)", // contorno branco no dark
+      color: isDarkMode ? "#fff" : "#0f172a",
     },
-    list: { display: "flex", flexDirection: "column", gap: 12 },
+    list: { display: "flex", flexDirection: "column", gap: 7 },
     item: (borderColor) => ({
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       padding: "14px 18px",
       borderRadius: 24,
-      background: "#fff",
-      border: `1px solid ${borderColor}22`,
+      background: isDarkMode ? "#1b3a2f" : "#fff",
+      border: `1px solid ${isDarkMode ? "#fff" : borderColor + "22"}`, // contorno branco no dark
       cursor: "pointer",
       transition: "transform 120ms ease, box-shadow 120ms ease",
+      color: isDarkMode ? "#fff" : "#0f172a",
     }),
     itemLeft: { display: "flex", alignItems: "center", gap: 16 },
     iconWrap: (border, bg) => ({
@@ -121,8 +124,8 @@ export default function Alertas() {
       flexShrink: 0,
     }),
     itemTexts: { display: "flex", flexDirection: "column" },
-    itemTitle: { fontSize: 16, fontWeight: 700, color: "#0f172a" },
-    itemDesc: { fontSize: 13, color: "#6b7280", marginTop: 6 },
+    itemTitle: { fontSize: 16, fontWeight: 700, color: isDarkMode ? "#fff" : "#0f172a" },
+    itemDesc: { fontSize: 13, color: isDarkMode ? "#d1d5db" : "#6b7280", marginTop: 6 },
   };
 
   const IconSVG = {
@@ -181,8 +184,10 @@ export default function Alertas() {
             width: "430px",
             borderRadius: "12px",
             padding: "20px",
-            backgroundColor: "white",
+            backgroundColor: isDarkMode ? "#246816" : "white",
             position: "relative",
+            color: isDarkMode ? "#fff" : "#111827",
+            border: isDarkMode ? "1px solid #fff" : "1px solid #ddd", // contorno branco no dark
           }}
         >
           <button
@@ -207,9 +212,7 @@ export default function Alertas() {
 
           <div className="text-center mb-3">{IconSVG[type]}</div>
 
-          <h4 className="text-center fw-bold mb-3" style={{ color: "#111827" }}>
-            {title}
-          </h4>
+          <h4 className="text-center fw-bold mb-3">{title}</h4>
 
           <div
             className="text-center text-white fw-bold rounded mb-3 py-2"
@@ -220,7 +223,7 @@ export default function Alertas() {
 
           <div
             className="border rounded p-3 mb-4"
-            style={{ borderColor: color.border, color: "#111827", fontSize: "15px" }}
+            style={{ borderColor: color.border, fontSize: "15px", color: isDarkMode ? "#fff" : "#111827" }}
           >
             {description}
           </div>
