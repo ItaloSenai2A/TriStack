@@ -51,11 +51,11 @@ export default function Configuracoes({ isDarkMode }) {
 
   /* --- Estilos adaptados --- */
   const bgContainer = isDarkMode ? "#1b3a2f" : "#f4f6f3";
-  const bgCard = isDarkMode ? "#99c99c" : "#fff";
-  const borderCard = isDarkMode ? "#fff" : "#4CAF50";
-  const colorText = isDarkMode ? "#fff" : "#2e7d32";
-  const bgBotao = isDarkMode ? "#608759" : "#f5f5f5";
-  const colorSubTexto = isDarkMode ? "#ffffff" : "#555";
+  const bgCard = isDarkMode ? "#ffffff" : "#fff";
+  const borderCard = isDarkMode ? "#205c31" : "#4CAF50";
+  const colorText = isDarkMode ? "#000000" : "#2e7d32";
+  const bgBotao = isDarkMode ? "#d1e7c8" : "#f5f5f5";
+  const colorSubTexto = isDarkMode ? "#000000" : "#555";
 
   return (
     <div style={{ ...container, backgroundColor: bgContainer }}>

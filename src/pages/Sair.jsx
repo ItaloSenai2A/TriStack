@@ -2,65 +2,67 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Sair = () => {
+const Sair = ({ isDarkMode }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // 🔒 Remove dados do login
     localStorage.removeItem("usuarioLogado");
-
     console.log("Usuário saiu");
-    navigate("/login"); // 🔁 Redireciona para login
+    navigate("/login");
   };
 
   return (
     <div
       className="d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}
+      style={{
+        minHeight: "100vh",
+        backgroundColor: isDarkMode ? "#0f2b1a" : "#f5f5f5", // fundo geral
+        transition: "0.3s",
+      }}
     >
-      {/* Card centralizado */}
       <div
         className="card shadow-lg p-4"
         style={{
           width: "360px",
-          border: "1px solid #4CB917",
+          border: `2px solid ${isDarkMode ? "#4CB917" : "#4CB917"}`,
           borderRadius: "15px",
           textAlign: "center",
-          backgroundColor: "#fff",
-          transform: "translateX(20px)",
+          backgroundColor: "#fff", // card sempre branco
+          transition: "0.3s",
         }}
       >
-        {/* Título */}
         <h1
           style={{
             fontSize: "32px",
             fontWeight: "700",
             marginBottom: "20px",
-            color: "#333",
+            color: "#000", // texto preto
           }}
         >
           Sair
         </h1>
 
-        <p className="text-muted mb-3" style={{ fontSize: "16px" }}>
+        <p className="mb-3" style={{ fontSize: "16px", color: "#333" }}>
           Até logo!
         </p>
 
         <button
           className="btn w-100 mb-3"
           style={{
-            backgroundColor: "#4CB917",
-            color: "#fff",
+            backgroundColor: "#7ED957", // verde claro
+            color: "#000",
             fontWeight: "500",
             fontSize: "16px",
             padding: "10px 0",
+            border: "none",
+            borderRadius: "10px",
           }}
           onClick={handleLogout}
         >
           Sair
         </button>
 
-        <p style={{ fontSize: "14px" }}>
+        <p style={{ fontSize: "14px", color: "#000" }}>
           Voltar para{" "}
           <Link
             to="/home"
