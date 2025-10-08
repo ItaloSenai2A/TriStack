@@ -1,31 +1,29 @@
 import React, { useState } from "react";
-import { FaFire, FaPhone, FaBell, FaMapMarkedAlt, FaFileAlt, FaCalendarCheck, FaCheck } from "react-icons/fa";
+import {
+  FaFire,
+  FaPhone,
+  FaBell,
+  FaMapMarkedAlt,
+  FaFileAlt,
+  FaCalendarCheck,
+  FaCheck
+} from "react-icons/fa";
 import { MapContainer, TileLayer, Circle, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-
-import { Bar } from "react-chartjs-2";
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
   Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
   Legend
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+} from "recharts";
 
 export default function Administracao() {
   const [modalAberto, setModalAberto] = useState(false);
-  const [modalTipo, setModalTipo] = useState(""); 
+  const [modalTipo, setModalTipo] = useState("");
   const [modalConteudo, setModalConteudo] = useState({ titulo: "", descricao: "" });
 
   const [novaOcorrencia, setNovaOcorrencia] = useState("");
@@ -96,41 +94,36 @@ export default function Administracao() {
     }
   };
 
-  /* --- Gráfico de barras --- */
-  const dadosGrafico = {
-    labels: ["Queimadas", "Enchentes", "Deslizamentos"],
-    datasets: [
-      {
-        label: "Ocorrências registradas",
-        data: [50, 80, 30], // você pode ligar esses valores a estados dinâmicos depois
-        backgroundColor: ["#d68936", "#3498db", "#e74c3c"]
-      }
-    ]
-  };
-
-  const opcoesGrafico = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top"
-      },
-      title: {
-        display: true,
-        text: "Desafios enfrentados na área"
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true
-      }
-    }
-  };
+  /* --- Dados do gráfico (Recharts) --- */
+  const dadosGrafico = [
+    { desafio: "2022", "2021": 45, "2022": 60 },
+    { desafio: "2023", "2021": 35, "2022": 80 },
+    { desafio: "2024", "2021": 25, "2022": 50 },
+    { desafio: "2025", "2021": 55, "2022": 40 },
+  ];
 
   return (
     <div style={container}>
       {/* Gráfico */}
       <div style={graficoContainer}>
-        <Bar data={dadosGrafico} options={opcoesGrafico} />
+        <h3 style={{ fontWeight: "600", marginBottom: "10px" }}>
+          Desafios enfrentados na área
+        </h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart
+            layout="vertical"
+            data={dadosGrafico}
+            margin={{ top: 10, right: 20, left: 20, bottom: 10 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.1} />
+            <XAxis type="number" hide />
+            <YAxis dataKey="desafio" type="category" />
+            <Tooltip />
+            <Legend verticalAlign="top" align="center" iconType="circle" wrapperStyle={{ paddingBottom: 10 }} />
+            <Bar dataKey="2021" fill="#b8792b" barSize={12} radius={[4,4,4,4]} name="Queimadas"/>
+            <Bar dataKey="2022" fill="#3182ff" barSize={12} radius={[4,4,4,4]} name="Enchentes"/>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
 
       {/* Intervenções */}
@@ -201,7 +194,7 @@ export default function Administracao() {
             <h3>{modalConteudo.titulo}</h3>
             <p>{modalConteudo.descricao}</p>
 
-            {/* Tipos de modal */}
+            {/* Modais específicos */}
             {modalTipo === "ocorrencia" && (
               <>
                 <input type="text" placeholder="Detalhes da ocorrência" value={novaOcorrencia} onChange={(e) => setNovaOcorrencia(e.target.value)} style={inputStyle}/>
@@ -430,21 +423,87 @@ export default function Administracao() {
           </div>
         </div>
       )}
-      
     </div>
   );
 }
 
 /* --- Estilos --- */
 const sidebarWidth = 250;
-const container = { display:"flex", gap:"30px", padding:"30px", fontFamily:"Arial, sans-serif", minHeight:"100vh", backgroundColor:"#f4f6f3", marginLeft:sidebarWidth, maxWidth:`calc(100% - ${sidebarWidth}px)` };
-const graficoContainer = { flex:1, backgroundColor:"#fdfdfd", padding:"20px", borderRadius:"15px", boxShadow:"0 4px 10px rgba(0,0,0,0.1)" };
-const acoesContainer = { flex:1, display:"flex", flexDirection:"column", gap:"20px" };
-const acaoGrupo = { display:"flex", flexDirection:"column", gap:"8px" };
-const card = (bg) => ({ display:"flex", alignItems:"center", gap:"10px", padding:"10px", backgroundColor:bg, borderRadius:"10px", cursor:"pointer", boxShadow:"0 2px 5px rgba(0,0,0,0.1)", fontSize:"14px" });
-const modalOverlay = { position:"fixed", top:0, left:0, width:"100%", height:"100%", backgroundColor:"rgba(0,0,0,0.5)", display:"flex", justifyContent:"center", alignItems:"center", zIndex:1000 };
-const modalContent = { backgroundColor:"#fff", padding:"20px", borderRadius:"10px", maxWidth:"500px", width:"90%", textAlign:"center", boxShadow:"0 4px 15px rgba(0,0,0,0.2)" };
-const modalButton = { marginTop:"15px", padding:"8px 16px", borderRadius:"5px", border:"none", backgroundColor:"#3498db", color:"#fff", cursor:"pointer" };
-const inputStyle = { width:"100%", padding:"8px", marginTop:"10px", borderRadius:"5px", border:"1px solid #ccc" };
-const checkItem = { display:"block", margin:"8px 0", fontSize:"14px" };
-const ulStyle = { listStyleType: "none", padding: 0, margin: 0 };
+const container = {
+  display: "flex",
+  gap: "30px",
+  padding: "30px",
+  fontFamily: "Arial, sans-serif",
+  minHeight: "100vh",
+  backgroundColor: "#f4f6f3",
+  marginLeft: sidebarWidth,
+  maxWidth: `calc(100% - ${sidebarWidth}px)`
+};
+const graficoContainer = {
+  flex: 1,
+  backgroundColor: "#fdfdfd",
+  padding: "20px",
+  borderRadius: "15px",
+  boxShadow: "0 4px 10px rgba(0,0,0,0.1)"
+};
+const acoesContainer = {
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px"
+};
+const acaoGrupo = {
+  display: "flex",
+  flexDirection: "column",
+  gap: "8px"
+};
+const card = (bg) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+  padding: "10px",
+  backgroundColor: bg,
+  borderRadius: "10px",
+  cursor: "pointer",
+  boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+  fontSize: "14px"
+});
+const modalOverlay = {
+  position: "fixed",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0,0,0,0.5)",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  zIndex: 1000
+};
+const modalContent = {
+  backgroundColor: "#fff",
+  padding: "20px",
+  borderRadius: "10px",
+  maxWidth: "500px",
+  width: "90%",
+  textAlign: "center",
+  boxShadow: "0 4px 15px rgba(0,0,0,0.2)"
+};
+const modalButton = {
+  marginTop: "15px",
+  padding: "8px 16px",
+  borderRadius: "5px",
+  border: "none",
+  backgroundColor: "#3498db",
+  color: "#fff",
+  cursor: "pointer"
+};
+const inputStyle = {
+  width: "100%",
+  padding: "8px",
+  marginTop: "10px",
+  borderRadius: "5px",
+  border: "1px solid #ccc"
+};
+const checkItem = { display: "block", margin: "8px 0", fontSize: "14px" };
+const ulStyle = { listStyleType: "disc", paddingLeft: "20px", marginBottom: "10px" };
