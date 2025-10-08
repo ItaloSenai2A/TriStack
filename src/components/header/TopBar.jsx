@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 
-function TopBar() {
+function TopBar({ isDarkMode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState("");
@@ -13,9 +12,7 @@ function TopBar() {
     if (usuarioLogado) {
       const { nome } = JSON.parse(usuarioLogado);
       setUsuario(nome);
-    } else {
-      setUsuario("");
-    }
+    } else setUsuario("");
   }, [location]);
 
   const pageTitles = {
@@ -44,25 +41,22 @@ function TopBar() {
     <div
       className="d-flex justify-content-between align-items-center px-4 py-3 position-relative"
       style={{
-        backgroundColor: "#f5f5f5",
-        borderBottom: "4px solid #4CB917",
+        backgroundColor: isDarkMode ? "#14482b" : "#f5f5f5",
+        borderBottom: `4px solid ${isDarkMode ? "#fff" : "#4CB917"}`,
+        color: isDarkMode ? "#fff" : "#246816",
         fontFamily: "'Josefin Sans', sans-serif",
       }}
     >
-      {/* 🟩 Nome da página alinhado à esquerda, logo após o sidebar */}
       <h4
         className="fw-bold mb-0"
         style={{
           fontSize: "25px",
-          color: "#246816",
-          marginLeft: "270px", // ajusta conforme a largura do sidebar
-          textAlign: "left",
+          marginLeft: "270px",
         }}
       >
         {titulo}
       </h4>
 
-      {/* Ícone e nome do usuário à direita */}
       {usuario && (
         <div className="position-relative ms-auto">
           <div
@@ -85,7 +79,7 @@ function TopBar() {
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
-                fill="#fff"
+                fill={isDarkMode ? "#fff" : "#fff"} // ícone sempre branco
                 viewBox="0 0 16 16"
               >
                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -97,13 +91,12 @@ function TopBar() {
             </div>
             <span
               className="fw-semibold"
-              style={{ fontSize: "16px", color: "#4CB917" }}
+              style={{ fontSize: "16px", color: isDarkMode ? "#fff" : "#4CB917" }}
             >
               {usuario}
             </span>
           </div>
 
-          {/* 🔽 Dropdown Menu */}
           {menuAberto && (
             <div
               className="card shadow position-absolute end-0 mt-2"
@@ -111,28 +104,21 @@ function TopBar() {
                 width: "180px",
                 borderRadius: "10px",
                 zIndex: "999",
-                backgroundColor: "#fff",
+                backgroundColor: isDarkMode ? "#246816" : "#fff",
+                color: isDarkMode ? "#fff" : "#000",
               }}
             >
               <ul className="list-unstyled mb-0">
                 <li
                   className="p-2 px-3"
-                  style={{
-                    cursor: "pointer",
-                    color: "#4CB917",
-                    fontWeight: "500",
-                  }}
+                  style={{ cursor: "pointer", fontWeight: "500" }}
                   onClick={() => irPara("/configuracoes")}
                 >
                   ⚙️ Configurações
                 </li>
                 <li
                   className="p-2 px-3"
-                  style={{
-                    cursor: "pointer",
-                    color: "#4CB917",
-                    fontWeight: "500",
-                  }}
+                  style={{ cursor: "pointer", fontWeight: "500" }}
                   onClick={() => irPara("/sair")}
                 >
                   🚪 Sair
