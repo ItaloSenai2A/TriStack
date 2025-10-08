@@ -447,3 +447,4 @@ const modalContent = { backgroundColor:"#fff", padding:"20px", borderRadius:"10p
 const modalButton = { marginTop:"15px", padding:"8px 16px", borderRadius:"5px", border:"none", backgroundColor:"#3498db", color:"#fff", cursor:"pointer" };
 const inputStyle = { width:"100%", padding:"8px", marginTop:"10px", borderRadius:"5px", border:"1px solid #ccc" };
 const checkItem = { display:"block", margin:"8px 0", fontSize:"14px" };
+const ulStyle = { listStyleType: "none", padding: 0, margin: 0 };
