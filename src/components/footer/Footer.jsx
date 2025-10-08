@@ -27,7 +27,7 @@ const Footer = () => {
         text: (
           <>
             <p>
-              O Mapa Vivo do Campo Inteligente é um projeto da equipe TriStack, criada em Jaú – SP, com o objetivo de unir tecnologia, sustentabilidade e inovação no agronegócio. Através da integração entre sensores IoT e uma plataforma digital, buscamos apoiar produtores na gestão eficiente de recursos e na prevenção de impactos ambientais. A TriStack acredita que o futuro do campo está na inteligência e na colaboração entre pessoas e tecnologia.
+              O Mapa Vivo do Campo Inteligente é um projeto da equipe TriStack, com o objetivo de unir tecnologia, sustentabilidade e inovação no agronegócio. Através da integração entre sensores IoT e uma plataforma digital, buscamos apoiar produtores na gestão eficiente de recursos e na prevenção de impactos ambientais. A TriStack acredita que o futuro do campo está na inteligência e na colaboração entre pessoas e tecnologia.
             </p>
           </>
         ),
