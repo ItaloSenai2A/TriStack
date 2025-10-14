@@ -18,6 +18,7 @@ import Alertas from "./pages/Alertas.jsx";
 import Sair from "./pages/Sair.jsx";
 import Configuracoes from "./pages/Configuracoes.jsx";
 import Administracao from "./pages/Administracao.jsx";
+import MeuPerfil from "./pages/MeuPerfil.jsx"; // ✅ import da nova página
 
 // Rota privada
 const PrivateRoute = ({ children }) => {
@@ -44,12 +45,64 @@ function App() {
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/login" element={<Login isDarkMode={isDarkMode} />} />
           <Route path="/cadastro" element={<Cadastro isDarkMode={isDarkMode} />} />
-          <Route path="/home" element={<PrivateRoute><Home isDarkMode={isDarkMode} /></PrivateRoute>} />
-          <Route path="/dashboard" element={<PrivateRoute><Dashboard isDarkMode={isDarkMode} /></PrivateRoute>} />
-          <Route path="/alertas" element={<PrivateRoute><Alertas isDarkMode={isDarkMode} /></PrivateRoute>} />
-          <Route path="/sair" element={<PrivateRoute><Sair isDarkMode={isDarkMode} /></PrivateRoute>} />
-          <Route path="/configuracoes" element={<PrivateRoute><Configuracoes isDarkMode={isDarkMode} /></PrivateRoute>} />
-          <Route path="/administracao" element={<PrivateRoute><Administracao isDarkMode={isDarkMode} /></PrivateRoute>} />
+
+          {/* 🔒 Rotas protegidas */}
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute>
+                <Home isDarkMode={isDarkMode} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard isDarkMode={isDarkMode} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/alertas"
+            element={
+              <PrivateRoute>
+                <Alertas isDarkMode={isDarkMode} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/configuracoes"
+            element={
+              <PrivateRoute>
+                <Configuracoes isDarkMode={isDarkMode} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/administracao"
+            element={
+              <PrivateRoute>
+                <Administracao isDarkMode={isDarkMode} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/meuperfil"
+            element={
+              <PrivateRoute>
+                <MeuPerfil isDarkMode={isDarkMode} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/sair"
+            element={
+              <PrivateRoute>
+                <Sair isDarkMode={isDarkMode} />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </main>
 

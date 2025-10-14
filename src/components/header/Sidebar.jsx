@@ -11,6 +11,7 @@ const menuItems = [
   { icon: "bi-bell", label: "Alertas", href: "/alertas" },
   { icon: "bi-gear", label: "Configurações", href: "/configuracoes" },
   { icon: "bi-shield-check", label: "Administração da Área", href: "/administracao" },
+  { icon: "bi-person", label: "Meu Perfil", href: "/meuperfil" }, // ✅ adicionado acima de Sair
   { icon: "bi-box-arrow-right", label: "Sair", href: "/sair" },
 ];
 
@@ -52,7 +53,7 @@ function Sidebar({ isOpen, onClose, isDarkMode, setIsDarkMode }) {
           onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
         />
 
-        {/* Toggle dark/light moderno */}
+        {/* Toggle dark/light */}
         <div
           onClick={toggleDarkMode}
           style={{
