@@ -1,95 +1,67 @@
-🌾 MAPA VIVO DO CAMPO INTELIGENTE
+# 🌾 **Mapa Vivo do Campo Inteligente**  
+Conectando o campo à tecnologia para uma agricultura mais eficiente e sustentável.  
 
-Conectando o campo à tecnologia para uma agricultura mais eficiente e sustentável.
+---
 
-🧰 Tecnologias Utilizadas
-🛠️ Frontend:
+## 🧰 **Tecnologias Utilizadas**
 
-React – Biblioteca JavaScript para construir interfaces de usuário.
+### 🛠️ **Frontend**
+- **React:** Biblioteca JavaScript para construir interfaces de usuário.  
+- **React Router:** Gerenciamento de rotas para SPA (Single Page Applications).  
+- **Vite:** Ferramenta de build rápida e moderna para projetos com React.  
+- **Bootstrap:** Framework CSS para componentes prontos e responsivos.  
 
-React Router – Gerenciamento de rotas para SPA (Single Page Applications).
+---
 
-Vite – Ferramenta de build rápida e moderna para projetos com React.
+## 📸 **Preview**
+<img width="664" height="376" alt="Captura_de_tela_2025-11-12_083401-removebg-preview" src="https://github.com/user-attachments/assets/ea34065b-7821-4f30-870a-4f614dbbb609" />
 
-Bootstrap – Framework CSS para componentes prontos e responsivos.
+## 📑 **Índice**
+- **Visão Geral**  
+- **Por que usar o Mapa Vivo do Campo Inteligente?**  
+- **Começando**  
+- **Pré-requisitos**  
+- **Instalação**  
+- **Como Usar**  
+- **Testes**  
 
-📸 Preview
+---
 
-<img width="664" height="376" alt="Captura_de_tela_2025-11-12_083401-removebg-preview" src="https://github.com/user-attachments/assets/25bbc291-32d2-4376-8065-972073ae92b6" />
+## 🔍 **Visão Geral**  
+**Mapa Vivo do Campo Inteligente** é uma plataforma moderna e escalável voltada para o **monitoramento agrícola em tempo real**.  
+O sistema integra sensores **IoT** e **microcontroladores** para coletar dados ambientais como temperatura, umidade, luz e qualidade do ar, exibindo informações por meio de um **dashboard interativo**.  
+A solução tem como objetivo **democratizar o acesso à agricultura de precisão**, oferecendo tecnologia acessível e sustentável para pequenos e médios produtores.  
 
-📑 Índice
+---
 
-Visão Geral
+## 🌱 **Por que usar o Mapa Vivo do Campo Inteligente?**  
+Este projeto foi criado para **otimizar o monitoramento agrícola**, permitindo que produtores e cooperativas tomem decisões mais assertivas com base em dados reais do campo.  
+Os principais recursos incluem:  
 
-Começando
+- 🔧 **Integração IoT:** Sensores de solo, luz e temperatura conectados a microcontroladores como ESP32 e Arduino.  
+- 📊 **Dashboard Interativo:** Visualização de dados ambientais em tempo real com gráficos e mapas dinâmicos.  
+- ⚙️ **Automação e Alertas:** Envio de notificações automáticas sobre variações críticas de clima e umidade.  
+- 🌐 **APIs RESTful:** Comunicação eficiente entre dispositivos IoT e a plataforma web.  
+- 💾 **Armazenamento de Dados:** Registro histórico para análise de desempenho agrícola.  
+- 📱 **Interface Responsiva:** Layout adaptável para dispositivos móveis e desktop.  
+- 🚀 **Escalabilidade:** Estrutura pronta para expansão em novas regiões e culturas agrícolas.  
 
-Pré-requisitos
+---
 
-Instalação
+## 🚀 **Começando**
 
-Como Usar
+### ✅ **Pré-requisitos**  
+Antes de iniciar, verifique se você possui:  
+- **Linguagem de Programação:** JavaScript  
+- **Gerenciador de Pacotes:** Node.js com NPM  
 
-Testes
+---
 
-🧠 Visão Geral
+## 🛠️ **Instalação**
 
-Mapa Vivo do Campo Inteligente é uma aplicação moderna desenvolvida com React, voltada para o monitoramento agrícola em tempo real.
-O projeto integra sensores IoT e microcontroladores para capturar dados ambientais, fornecendo gráficos, alertas e relatórios automatizados através de um dashboard interativo.
+Siga os passos abaixo para configurar o projeto em sua máquina local:  
 
-🎯 Por que usar o Mapa Vivo do Campo Inteligente?
-
-O projeto foi criado com o objetivo de democratizar o acesso à agricultura de precisão, com tecnologia acessível e escalável para produtores rurais.
-
-🧩 Arquitetura Modular: Componentes React organizados para exibir dados ambientais de forma dinâmica e intuitiva.
-
-⚡ Desenvolvimento Rápido: Usa Vite para builds rápidos, hot reload e suporte moderno a JavaScript.
-
-📡 Integração com IoT: Conecta sensores de solo, umidade, temperatura e luz para coleta de dados em tempo real.
-
-💾 Visualização de Dados: Dashboards interativos com gráficos e históricos de medições.
-
-📱 Interface Responsiva: Layout adaptável para dispositivos móveis, ideal para uso no campo.
-
-🚀 Começando
-✅ Pré-requisitos
-
-Antes de iniciar, verifique se você tem o seguinte instalado na sua máquina:
-
-📌 Linguagem de Programação: JavaScript
-
-📦 Gerenciador de Pacotes: Node.js com o NPM
-
-🛠️ Instalação
-
-Siga os passos abaixo para configurar o projeto em sua máquina local:
-
-Clone o repositório:
-
+```bash
 git clone https://github.com/italonensai/mapa-vivo-campo-inteligente
-
-
-Acesse o diretório do projeto:
-
 cd mapa-vivo-campo-inteligente
-
-
-Instale as dependências necessárias:
-
 npm install
-
-▶️ Como Usar
-
-Para rodar o projeto localmente, utilize o seguinte comando:
-
-npm run dev
-
-
-Esse comando irá iniciar o servidor local e abrir o app no navegador, normalmente em http://localhost:5173
-.
-
-🧪 Testes
-
-O projeto Mapa Vivo do Campo Inteligente possui suporte a testes (futuramente será especificado o framework utilizado).
-Para rodar os testes, utilize:
-
-npm test
