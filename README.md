@@ -17,10 +17,6 @@ Bootstrap – Framework CSS para componentes prontos e responsivos.
 
 <img width="664" height="376" alt="Captura_de_tela_2025-11-12_083401-removebg-preview" src="https://github.com/user-attachments/assets/25bbc291-32d2-4376-8065-972073ae92b6" />
 
-🌾 Dashboard com dados agrícolas em tempo real
-💧 Gráficos de umidade, temperatura e qualidade do ar
-📡 Mapa interativo com sensores IoT conectados
-
 📑 Índice
 
 Visão Geral
