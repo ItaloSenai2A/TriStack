@@ -65,3 +65,11 @@ Siga os passos abaixo para configurar o projeto em sua máquina local:
 git clone https://github.com/italonensai/mapa-vivo-campo-inteligente
 cd mapa-vivo-campo-inteligente
 npm install
+```
+
+## 🛠️ **Desenvolvido por:**
+
+- Emanuelly Vitoria dos Santos Lima
+- Ítalo Francesco
+- Rayssa Nanclares da Silveira
+  
