@@ -73,6 +73,7 @@ npm install
 - Ítalo Francesco
 - Rayssa Nanclares da Silveira
 
+
 Documentação:
 [Documentação React - TriStack.pdf](https://github.com/user-attachments/files/23882339/Documentacao.React.-.TriStack.pdf)
 
