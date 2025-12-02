@@ -74,10 +74,10 @@ npm install
 - Rayssa Nanclares da Silveira
 
 
-Documentação:
+**Documentação:**
 [Documentação React - TriStack.pdf](https://github.com/user-attachments/files/23882339/Documentacao.React.-.TriStack.pdf)
 
-Manual de Usuário:
+**Manual de Usuário:**
 [Manual de usuário - TriStack.pdf](https://github.com/user-attachments/files/23882368/Manual.de.usuario.-.TriStack.pdf)
 
   
