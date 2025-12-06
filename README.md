@@ -72,3 +72,5 @@ npm install
 - Emanuelly Vitoria dos Santos Lima
 - Ítalo Francesco
 - Rayssa Nanclares da Silveira
+
+[Documentação React - TriStack.pdf](https://github.com/user-attachments/files/23996572/Documentacao.React.-.TriStack.pdf)
